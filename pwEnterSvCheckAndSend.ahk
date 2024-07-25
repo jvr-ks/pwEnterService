@@ -13,6 +13,9 @@ checkAndSend(forced := 0){
   useFirefox := 0
   useCrypditor := 0
   
+  CoordMode "Mouse", "Screen"
+  MouseGetPos &xActuPos, &yActuPos
+  
   if (!FileExist(passwordsFile)){
     settimer checkAndSend, 0
     if (!showOnceOnly){
@@ -40,8 +43,6 @@ checkAndSend(forced := 0){
   }
   ;-------------------------------- Firefox --------------------------------
   if ((InStr(pname, "firefox.exe") && useFirefox) || forced && WinExist(Firefox_WinActivateId)){
-    MouseGetPos &xActuPos, &yActuPos
-    
     if (forced){
       if (WinExist(Firefox_PwBoxId))
         WinActivate(Firefox_PwBoxId)
@@ -81,12 +82,9 @@ checkAndSend(forced := 0){
         }
       }
     }
-    MouseMove xActuPos, yActuPos
   }
   ;-------------------------------- Crypditor_ -------------------------------- 
   if (((pname = Crypditor_ExeName) && useCrypditor) || forced && WinExist(Crypditor_WinActivateId)){
-    MouseGetPos &xActuPos, &yActuPos
-    
     started := WinWaitActive(Crypditor_WinActivateId,,30)
     forced := 0
     if (started){
@@ -122,7 +120,6 @@ checkAndSend(forced := 0){
         }
       }
     }
-    MouseMove xActuPos, yActuPos
   }
   if (pname = "pwEnterServiceSettings.exe"){
     newAppsStop := 1
@@ -132,14 +129,13 @@ checkAndSend(forced := 0){
   }
   if (pname = "pwEnterServiceRemove.exe"){
     newAppsStop := 1
+    MouseMove xActuPos, yActuPos
     exit()
   }
   
   ;--------------------------------- Vncviewer ---------------------------------
   ; Vncviewer_WinActivateId not used
   if ((InStr(pname, "vncviewer.exe") && useVncviewer) || forced && WinExist(Vncviewer_PwBoxId)){
-    MouseGetPos &xActuPos, &yActuPos
-  
     if (forced){
       WinWaitActive(Vncviewer_PwBoxId,,30)
       if (WinExist(Vncviewer_PwBoxId))
@@ -181,9 +177,9 @@ checkAndSend(forced := 0){
         }
       }
     }
-    MouseMove xActuPos, yActuPos
   }
   displayTestmodeMsg("")
+  MouseMove xActuPos, yActuPos
 }
 ;--------------------------- pwEnterSvGetPwFirefox ---------------------------
 pwEnterSvGetPwFirefox(){
