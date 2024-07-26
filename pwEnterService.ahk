@@ -47,7 +47,7 @@ DetectHiddenWindows 1
 
 appname := "pwEnterService"
 appnameLower := "pwenterservice"
-appVersion := "0.019"
+appVersion := "0.020"
 
 setVariables()
 

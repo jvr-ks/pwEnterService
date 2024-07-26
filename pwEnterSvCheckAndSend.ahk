@@ -13,9 +13,6 @@ checkAndSend(forced := 0){
   useFirefox := 0
   useCrypditor := 0
   
-  CoordMode "Mouse", "Screen"
-  MouseGetPos &xActuPos, &yActuPos
-  
   if (!FileExist(passwordsFile)){
     settimer checkAndSend, 0
     if (!showOnceOnly){
@@ -63,7 +60,20 @@ checkAndSend(forced := 0){
         ControlSend "{Enter}",, Firefox_PwBoxId
       }
       pw := ""
-      sleep verifyDelayFirefox
+      ; sleep verifyDelayFirefox
+      ; still exists check removed ...
+      
+      try {
+        newAppsStarted.Delete("firefox.exe")
+      }
+      
+      if (newAppsStarted.Count > 0){
+        showHintColoredTop("Warning, `"pwEnterService`" multible concurrent requests not supported!")
+      }
+    }
+  }
+
+/*       sleep verifyDelayFirefox
       ; still exists?
       if (WinExist(Firefox_PwBoxId)){
         showHintColoredTop("Firefox password failed! (Set the focus on the password request box)`n`nTrying again in 5 seconds!`n`n(Press Escape to abort).", 5000)
@@ -82,7 +92,7 @@ checkAndSend(forced := 0){
         }
       }
     }
-  }
+*/
   ;-------------------------------- Crypditor_ -------------------------------- 
   if (((pname = Crypditor_ExeName) && useCrypditor) || forced && WinExist(Crypditor_WinActivateId)){
     started := WinWaitActive(Crypditor_WinActivateId,,30)
@@ -129,7 +139,6 @@ checkAndSend(forced := 0){
   }
   if (pname = "pwEnterServiceRemove.exe"){
     newAppsStop := 1
-    MouseMove xActuPos, yActuPos
     exit()
   }
   
@@ -179,7 +188,6 @@ checkAndSend(forced := 0){
     }
   }
   displayTestmodeMsg("")
-  MouseMove xActuPos, yActuPos
 }
 ;--------------------------- pwEnterSvGetPwFirefox ---------------------------
 pwEnterSvGetPwFirefox(){
