@@ -42,7 +42,6 @@ setVariables(){
   verifyDelayCrypditor := 2000
   verifyDelayVncviewer := 6000
   testMode := 0
-  newAppsStarted := Map()
   newAppsStop := 0
 
 }

@@ -60,39 +60,18 @@ checkAndSend(forced := 0){
         ControlSend "{Enter}",, Firefox_PwBoxId
       }
       pw := ""
-      ; sleep verifyDelayFirefox
-      ; still exists check removed ...
-      
-      try {
-        newAppsStarted.Delete("firefox.exe")
-      }
-      
-      if (newAppsStarted.Count > 0){
-        showHintColoredTop("Warning, `"pwEnterService`" multible concurrent requests not supported!")
-      }
-    }
-  }
-
-/*       sleep verifyDelayFirefox
+      sleep verifyDelayFirefox
       ; still exists?
       if (WinExist(Firefox_PwBoxId)){
         showHintColoredTop("Firefox password failed! (Set the focus on the password request box)`n`nTrying again in 5 seconds!`n`n(Press Escape to abort).", 5000)
         if (!GetKeyState("Escape", "P")){
-          settimer checkAndSend, -1000
+          settimer checkAndSend, -5000
         } else {
           showHintColoredTop("Retry canceled!")
         }
-      } else {
-        try {
-          newAppsStarted.Delete("firefox.exe")
-        }
-        if (newAppsStarted.Count > 0){
-          ; showHintColoredTop("Warning, `"pwEnterService`" multible concurrent requests!")
-          settimer checkAndSend, -1000
-        }
       }
     }
-*/
+  }
   ;-------------------------------- Crypditor_ -------------------------------- 
   if (((pname = Crypditor_ExeName) && useCrypditor) || forced && WinExist(Crypditor_WinActivateId)){
     started := WinWaitActive(Crypditor_WinActivateId,,30)
@@ -116,24 +95,15 @@ checkAndSend(forced := 0){
       if (WinExist(Crypditor_WinActivateId)){
         showHintColoredTop("Crypditor password failed! (Set the focus on the password request box)`n`n Trying again in 5 seconds!`n`n(Press Escape to abort).", 5000)
         if (!GetKeyState("Escape", "P")){
-          settimer checkAndSend, -1000
+          settimer checkAndSend, -5000
         } else {
           showHintColoredTop("Retry canceled!")
-        }
-      } else {
-        try {
-          newAppsStarted.Delete(Crypditor_ExeName)
-        }
-        if (newAppsStarted.Count > 0){
-          ; showHintColoredTop("Warning, `"pwEnterService`" multiple concurrent requests!")
-          settimer checkAndSend, -1000
         }
       }
     }
   }
   if (pname = "pwEnterServiceSettings.exe"){
     newAppsStop := 1
-    newAppsStarted := Map()
     pwEnterSvSettings()
     pause
   }
@@ -172,17 +142,9 @@ checkAndSend(forced := 0){
       if (WinExist(Vncviewer_PwBoxId)){
         showHintColoredTop("Vncviewer password failed! (Set the focus on the password request box)`n`nTrying again in 5 seconds!`n`n(Press Escape to abort).", 5000)
         if (!GetKeyState("Escape", "P")){
-          settimer checkAndSend, -1000
+          settimer checkAndSend, -5000
         } else {
           showHintColoredTop("Retry canceled!")
-        }
-      } else {
-        try {
-          newAppsStarted.Delete("vncviewer.exe")
-        }
-        if (newAppsStarted.Count > 0){
-          ; showHintColoredTop("Warning, `"pwEnterService`" multible concurrent requests!")
-          settimer checkAndSend, -1000
         }
       }
     }

@@ -47,7 +47,7 @@ DetectHiddenWindows 1
 
 appname := "pwEnterService"
 appnameLower := "pwenterservice"
-appVersion := "0.020"
+appVersion := "0.021"
 
 setVariables()
 
@@ -157,7 +157,6 @@ newWindowOpened(wParam, lParam, *){
     pname := WinGetProcessName("ahk_id " lParam)
     if (pname = "firefox.exe" || pname = Crypditor_ExeName || pname = "pwEnterServiceSettings.exe" || pname = "pwEnterServiceRemove.exe" || pname = "vncviewer.exe"){
       if (!newAppsStop){
-        newAppsStarted.Set(pname, 1)
         settimer checkAndSend, -1
       }
     }
