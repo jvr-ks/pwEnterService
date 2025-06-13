@@ -33,8 +33,7 @@ A copy is included of the file "license.txt" is included in each download.
   
 Version (&gt;=)| Change  
 ------------ | -------------  
-0.020 | Mouseposition is saved and restored
-0.019 | VncViewer identification changed to "UltraVNC Viewer - Authentication"
+0.023 | Mouseposition is saved and restored, VncViewer id now is "UltraVNC Viewer - Authentication"
 0.018 | Vncviewer support, add Vncviewer_Password= to the passwords file "pwEnterServicePasswords.ini" (USB stick!)  
 0.015 | Move to a project of its own! [pwEnterService](https://github.com/jvr-ks/pwEnterService). 
 0.014 | Bugfixes
