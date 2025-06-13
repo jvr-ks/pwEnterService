@@ -81,6 +81,7 @@ checkAndSend(forced := 0){
     forced := 0
     CoordMode "Mouse", "Screen"
     MouseGetPos &posSaveX, &posSaveY
+    ;tooltip pname " detected"
     if (started){
       if (testMode){
         displayTestmodeMsg("Password request detected, app: " pname)
@@ -122,7 +123,6 @@ checkAndSend(forced := 0){
   ;--------------------------------- Vncviewer ---------------------------------
   ; Vncviewer_WinActivateId not used
   if ((InStr(pname, "vncviewer.exe") && useVncviewer) || forced && WinExist(Vncviewer_PwBoxId)){
-tooltip pname
     if (forced){
       WinWaitActive(Vncviewer_PwBoxId,,30)
       if (WinExist(Vncviewer_PwBoxId))
